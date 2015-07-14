@@ -1,0 +1,25 @@
+<div class="all-posts-page">
+	<div class="post" ng-repeat="post in vm.allposts">
+		<h2>{{post.title}} <span class="visible-xs rating-mobile pull-right">{{post.rating}}</span></h2>
+
+		<div class="row">
+			<div class="col-xs-5 col-sm-3 photo" style="background-image: url({{post.imgUrl}})"></div>
+			<div class="col-xs-7 col-sm-3 details">
+				<div ng-repeat="detail in post.details">
+					<div class="detail-container">
+					<span class="detail-label"> {{ detail.label }} </span>
+					<span class="detail-content pull-right"> {{ detail.content }} </span>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4 description">
+				{{post.description}}
+			</div>
+			<div class="col-xs-12 col-sm-2 rating-default hidden-xs">
+				{{post.rating}}
+			</div>			
+		</div>
+
+			
+	</div>
+</div>

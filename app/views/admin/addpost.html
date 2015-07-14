@@ -1,0 +1,25 @@
+<div class="add-post-page">
+	<div class="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2">
+		<h1>Lisää uusi arvostelu</h1>
+		<form ng-submit="vm.validatePost()" class="form inline-form">
+			<!-- <select>
+				<option selected disabled>Valitse Kategoria</option>
+				<option ng-repeat="type in vm.postTypes">{{type}}</option>
+			</select> -->
+			<label>Arvostelun otsikko:</label><input ng-model="vm.post.title" type="text" autofocus require placeholder="Anna otsikko"  class="form-control">
+			<br>
+			<label>Yksityiskohdat:</label>
+			<div>
+
+			</div>
+			<div class="container-fluid text-center">
+				<button ng-click="vm.addDetailField()" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span></button>
+			</div>
+			<label>Kuvaus:</label><textarea ng-model="vm.post.description" type="text" require placeholder="Anna kuvaus" class="form-control"></textarea>
+			<br>
+			<label>Arvosana:</label><input ng-model="vm.post.rating" type="number" min="0" max="100" require placeholder="Anna arvosana" class="form-control">
+			<br>
+			<button type="submit">Tallenna</button>
+		</form>
+	</div>
+</div>
