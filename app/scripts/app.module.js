@@ -13,11 +13,8 @@
  */
 angular.module('viiniviikariMobile', [
   'ngAnimate',
-  'ngCookies',
   'ngResource',
-  'ngRoute',
   'ngSanitize',
-  'ngTouch',
   'ionic',
   'firebase'
 ])

@@ -1,13 +1,10 @@
 (function(){ 'use strict';
 
-
 angular
-	.module('viiniviikari')
+	.module('viiniviikariMobile')
 	.factory('Post', function ($resource) {
 	  return $resource('https://FIREBASE-URL.firebaseIO.com/posts/:id.json');
 	});
-
-
 
 })();
 

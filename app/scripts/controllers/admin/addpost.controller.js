@@ -1,7 +1,7 @@
 (function(){
 
 angular
-	.module('viiniviikari')
+	.module('viiniviikariMobile')
 	.controller('addPostCtrl', function(Post){
 		/* jshint validthis: true */
 		var vm = this;
