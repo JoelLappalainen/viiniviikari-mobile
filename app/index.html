@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css" />
     <!-- endbower -->
     <!-- endbuild -->
+
+    <!-- build:css styles/style.css -->
     <link href="styles/style.css" rel="stylesheet">
+    <!-- endbuild -->
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="styles/ionic.app.css" rel="stylesheet">
@@ -34,13 +37,19 @@
 
     <!-- your app's js -->
     <!-- build:js scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers.js"></script>
-    <script src="scripts/services.js"></script>
+    <script src="scripts/app.module.js"></script>
+    <script src="scripts/app.routes.js"></script>
+    <script src="scripts/controllers/home.controller.js"></script>
+    <script src="scripts/controllers/login.controller.js"></script>
+    <script src="scripts/controllers/posts.controller.js"></script>
+    <script src="scripts/controllers/singlepost.controller.js"></script>
+    <script src="scripts/controllers/admin/addpost.controller.js"></script>
+
+    <script src="scripts/services/post.service.js"></script>
     <script src="scripts/configuration.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="starter">
+  <body ng-app="viiniviikariMobile">
     <!--
       The nav bar that will be updated as we navigate between views.
     -->

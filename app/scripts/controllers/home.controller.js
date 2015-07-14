@@ -8,7 +8,7 @@
  */
 
 angular
-	.module('viiniviikari')
+	.module('viiniviikariMobile')
 	.controller('HomeCtrl', function(){
 		/* jshint validthis: true */
 		var vm = this;

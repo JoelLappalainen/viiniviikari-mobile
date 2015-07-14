@@ -8,7 +8,7 @@
  */
 
 angular
-	.module('viiniviikari')
+	.module('viiniviikariMobile')
 	.controller('SinglePostCtrl', function(){
 		/* jshint validthis: true */
 		var vm = this;
