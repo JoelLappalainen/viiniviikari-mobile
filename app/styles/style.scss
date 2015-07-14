@@ -1,5 +1,67 @@
 @import "themes";
 
-body{
-	background-color: $main-color;
+/*********
+* BUTTONS
+*********/
+.btn-round{ @include border-radius(4px); border: 0; }
+.btn-round-right{ @include border-radius-right(4px); }
+.btn-round-left{ @include border-radius-left(4px); }
+.btn-shadow-default{ @include button-box-shadow(3px, $main-color-dark); }
+.btn-shadow-positive{ @include button-box-shadow(3px, $positive-color-dark); }
+.btn-shadow-negative{ @include button-box-shadow(3px, $negative-color-dark); }
+.btn-shadow-default-large{ @include button-box-shadow(5px, $main-color-dark); }
+.btn-shadow-positive-large{ @include button-box-shadow(5px, $positive-color-dark); }
+.btn-shadow-negative-large{ @include button-box-shadow(5px, $negative-color-dark); }
+.btn-default{ background-color: $main-color; color: #fff;}
+.btn-positive{ background-color: $positive-color; color: #fff;}
+.btn-negative{ background-color: $negative-color; color: #fff;}
+.btn-outline-default{ border: 2px solid $main-color-dark; background-color:transparent; }
+.btn-outline-positive{ border: 2px solid $positive-color-dark; background-color:transparent; }
+.btn-outline-negative{ border: 2px solid $negative-color-dark; background-color:transparent; }
+.text-light{ font-weight: lighter; }
+.btn-small{ font-size: 12px !important;}
+.btn-padding{ padding: 0px 24px;}
+.btn-circle{ @include border-radius(50%); color: #fff; border: none; height: 50px; width: 50px; padding: 0;}
+.btn-facebook{ background-color: #3b5998 ;}
+.btn-twitter{ background-color: #55acee ;}
+.btn-googleplus{ background-color: #d62d20 ;}
+
+/******
+* TEXT
+******/
+.text-bold{ font-weight: 700; }
+.text-light{ font-weight: 200; }
+.text-italic{ font-style: italic; }
+.text-positive{ color: $positive-color-dark !important; }
+.text-negative{ color: $negative-color-dark !important; }
+
+/*******
+* OTHER
+*******/
+.pull-right{ float: right; }
+.border-round{ @include border-radius(4px) }
+
+/***********************
+* Overwrite ionic styles
+***********************/
+.bar, ion-header-bar.bar, .tabs{
+  background-color: $main-color !important;
 }
+.bar .title, .bar .button.back-button, .bar .button.button-clear, ion-tabs.tabs-color-active-positive .tab-item{
+  color: #fff !important;
+}
+.bar-stable .button{
+    color: #fff;
+}
+.slider{
+  height: 100%;
+}
+#home .scroll { height: 100% }
+
+
+/***********************************APP STYLES*******************************************/
+
+
+
+
+

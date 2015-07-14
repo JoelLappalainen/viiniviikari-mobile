@@ -1,2 +1,72 @@
 $text-color: #444;
-$main-color: red;
+$bg-color: #eee;
+$bg-color: lighten($bg-color, 10%);
+$border-color: #ddd;
+$main-color: #AB47BC;
+$main-color-light: lighten($main-color, 10%);
+$main-color-dark: darken($main-color, 10%);
+$positive-color: #4CAF50;
+$negative-color: #E44D4D;
+$positive-color-dark: darken($positive-color, 10%);
+$negative-color-dark: darken($negative-color, 20%);
+
+@mixin button-box-shadow($size, $color) {
+  -webkit-box-shadow: 0px $size 0px 0px $color;
+     -moz-box-shadow: 0px $size 0px 0px $color;
+          box-shadow: 0px $size 0px 0px $color;
+}
+@mixin box-shadow($params) {
+  -webkit-box-shadow: $params;
+     -moz-box-shadow: $params;
+          box-shadow: $params;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin border-radius-right($radius) {
+    -webkit-border-top-right-radius: $radius;
+    -webkit-border-bottom-right-radius: $radius;
+    -moz-border-radius-topright: $radius;
+    -moz-border-radius-bottomright: $radius;
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+}
+
+@mixin border-radius-left($radius) {
+    -webkit-border-top-left-radius: $radius;
+    -webkit-border-bottom-left-radius: $radius;
+    -moz-border-radius-topleft: $radius;
+    -moz-border-radius-bottomleft: $radius;
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+}
+
+@mixin border-radius-top($radius) {
+    -webkit-border-top-left-radius: $radius;
+    -webkit-border-top-rightt-radius: $radius;
+    -moz-border-radius-topleft: $radius;
+    -moz-border-radius-topright: $radius;
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+}
+
+@mixin border-radius-bottom($radius) {
+    -webkit-border-bottom-left-radius: $radius;
+    -webkit-border-bottom-rightt-radius: $radius;
+    -moz-border-radius-bottomleft: $radius;
+    -moz-border-radius-bottomright: $radius;
+    border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+}
+
+@mixin transition($prop) {
+    -webkit-transition: $prop 1s ease-in-out;
+    -moz-transition: $prop 1s ease-in-out;
+    -o-transition: $prop 1s ease-in-out;
+    transition: $prop 1s ease-in-out;
+}
