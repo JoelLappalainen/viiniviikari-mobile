@@ -39,7 +39,7 @@ angular.module('viiniviikariMobile')
     }
   })
   // -->
-    .state('tab.post-details', {
+    .state('tab.post-details/:id', {
       url: '/post-details/:id',
       views: {
         'tab-posts': {

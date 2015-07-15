@@ -9,19 +9,21 @@
 
 angular
 	.module('viiniviikariMobile')
-	.controller('PostDetailsCtrl', function(){
+	.controller('PostDetailsCtrl', function(Post, $stateParams){
 		/* jshint validthis: true */
 		var vm = this;
-		vm.testi = 'moi';
 
 		activate();
 		return vm;
 		/////////////////////
 
-
-
 		function activate(){
-			console.log('hae yksi post');
+			var postId = $stateParams.id;
+			Post.get(postId).$loaded().then(function(success){
+				vm.post = success;
+			}, function(error){
+				console.log(error);
+			});
 		}
 	});
 

@@ -1,5 +1,74 @@
 <ion-view view-title="Arvostelun nimi">
 	<ion-content class="padding">
 		<div>Arvostelun tarkemmat tiedot</div>
+		<div class="list">
+  		<div class="item item-thumbnail-left">
+	      <img ng-src="{{vm.post.imgUrl}}">
+	     	<h2>{{vm.post.title}}</h2>
+	      <p>{{vm.post.category}}</p>
+	    </div>
+		</div>
+		<div class="card">
+			<!-- country -->
+			<div class="item item-divider">
+		    {{vm.post.details.country.label}}
+		  </div>
+		  <div class="item item-text-wrap">
+		    {{vm.post.details.country.content}}
+		  </div>
+		  <!-- grapes -->
+			<div class="item item-divider">
+		    {{vm.post.details.grapes.label}}
+		  </div>
+		  <div class="item item-text-wrap">
+		  	<div ng-repeat="grape in vm.post.details.grapes.content">
+		  		{{grape.text}}
+		  	</div>		    
+		  </div>
+		  <!-- litres -->
+			<div class="item item-divider">
+		    {{vm.post.details.litres.label}}
+		  </div>
+		  <div class="item item-text-wrap">
+		    {{vm.post.details.litres.content}}
+		  </div>
+		  <!-- location -->
+			<div class="item item-divider">
+		    {{vm.post.details.location.label}}
+		  </div>
+		  <div class="item item-text-wrap">
+		    {{vm.post.details.location.content}}
+		  </div>
+		  <!-- plot -->
+			<div class="item item-divider">
+		    {{vm.post.details.plot.label}}
+		  </div>
+		  <div class="item item-text-wrap">
+		    {{vm.post.details.plot.content}}
+		  </div>
+		  <!-- price -->
+			<div class="item item-divider">
+		    {{vm.post.details.price.label}}
+		  </div>
+		  <div class="item item-text-wrap">
+		    {{vm.post.details.price.content}}
+		  </div>
+		  <!-- producer -->
+		  <div class="item item-divider">
+		    {{vm.post.details.producer.label}}
+		  </div>
+		  <div class="item item-text-wrap">
+		    {{vm.post.details.producer.content}}
+		  </div>
+		  <!-- year -->
+		  <div class="item item-divider">
+		    {{vm.post.details.year.label}}
+		  </div>
+		  <div class="item item-text-wrap">
+		    {{vm.post.details.year.content}}
+		  </div>		  
+
+		</div>
+
 	</ion-content>
 </ion-view>
