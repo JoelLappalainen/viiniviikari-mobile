@@ -5,9 +5,9 @@
 
 /**
  * @ngdoc overview
- * @name viiniviikari
+ * @name viiniviikariMobile
  * @description
- * # viiniviikari application
+ * # A mobile application for viiniviikari
  *
  * Main module of the application.
  */
@@ -16,9 +16,14 @@ angular.module('viiniviikariMobile', [
   'ngResource',
   'ngSanitize',
   'ionic',
-  'firebase'
+  'firebase',
+  'ngCordova'
 ])
+
+// Firebase url constant
 .constant('FIREBASE_URL', 'https://shining-inferno-4229.firebaseio.com/')
+// underscore constant
+.constant('_', window._)
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

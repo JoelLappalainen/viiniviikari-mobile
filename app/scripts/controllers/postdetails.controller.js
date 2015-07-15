@@ -1,15 +1,15 @@
 (function() { 'use strict';
 /**
  * @ngdoc function
- * @name viiniviikariMobile.controller:HomeCtrl
+ * @name viiniviikariMobile.controller:PostDetailsCtrl
  * @description
- * # HomeCtrl
- * Controller for home page
+ * # PostDetailsCtrl
+ * Controller for a single post (details)
  */
 
 angular
 	.module('viiniviikariMobile')
-	.controller('HomeCtrl', function(){
+	.controller('PostDetailsCtrl', function(){
 		/* jshint validthis: true */
 		var vm = this;
 		vm.testi = 'moi';
@@ -21,7 +21,7 @@ angular
 
 
 		function activate(){
-			console.log('hae viimeisimmät postit');
+			console.log('hae yksi post');
 		}
 	});
 

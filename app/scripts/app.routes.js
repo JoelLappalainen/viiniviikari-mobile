@@ -11,35 +11,55 @@ angular.module('viiniviikariMobile')
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: "/tab",
+  .state('tab', {
+    url: '/tab',
     abstract: true,
-    templateUrl: "templates/tabs.html"
+    templateUrl: 'views/tabs.html'
   })
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.home', {
+    url: '/home',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
+      'tab-home': {
+        templateUrl: 'views/tab-home.html',
         controller: 'HomeCtrl as vm'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.posts', {
+    url: '/posts',
+    views: {
+      'tab-posts': {
+        templateUrl: 'views/tab-posts.html',
+        controller: 'PostsCtrl as vm'
+      }
+    }
+  })
+  // -->
+    .state('tab.post-details', {
+      url: '/post-details/:id',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'PostsCtrl as vm'
+        'tab-posts': {
+          templateUrl: 'views/post-details.html',
+          controller: 'PostDetailsCtrl as vm'
         }
       }
-    });
+    })
+
+  .state('tab.account', {
+    url: '/account',
+    views: {
+      'tab-account': {
+        templateUrl: 'views/tab-account.html',
+        controller: 'AccountCtrl as vm'
+      }
+    }
+  });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/home');
 
 });

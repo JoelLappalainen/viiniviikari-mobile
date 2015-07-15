@@ -1,10 +1,10 @@
 (function() { 'use strict';
 /**
  * @ngdoc function
- * @name viiniviikari.controller:HomeCtrl
+ * @name viiniviikari.controller:LoginCtrl
  * @description
  * # LoginCtrl
- * Controller for home page
+ * Controller for loggin users in
  */
 
 angular

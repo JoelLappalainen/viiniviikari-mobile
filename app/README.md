@@ -1,32 +1,97 @@
-This is an addon starter template for the [Ionic Framework](http://ionicframework.com/).
+Viiniviikari Mobile App
+===
 
-## How to use this template
+## Dev installation
+Clone the directory and move into it.
 
-*This template does not work on its own*. It is missing the Ionic library, and AngularJS.
-
-To use this, either create a new ionic project using the ionic node.js utility, or copy and paste this into an existing Cordova project and download a release of Ionic separately.
-
-### With the Ionic tool:
-
-Take the name after `ionic-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myApp tabs
+```
+git clone https://github.com/JoelLappalainen/viiniviikari-mobile.git
+cd viiniviikari-mobile
 ```
 
-Then, to run it, cd into `myApp` and run:
+---
 
-```bash
-$ ionic platform add ios
-$ ionic build ios
-$ ionic emulate ios
+**Install Grunt.**
+```
+npm install -g grunt
+npm install -g grunt-cli
 ```
 
-Substitute ios for android if not on a Mac, but if you can, the ios development toolchain is a lot easier to work with until you need to do anything custom to Android.
+**NOTE:** global install with sudo may require fix (Mac OSX especially?) described here: http://stackoverflow.com/questions/16151018/npm-throws-error-without-sudo - execute commands:
+```
+sudo chown -R $(whoami) ~/.npm
+sudo chown -R $USER /usr/local/lib/node_modules
+```
 
-## Demo
-http://plnkr.co/edit/qYMCrt?p=preview
+---
 
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
+**Install npm and bower packages.**
+
+```
+npm install && bower install
+```
+
+---
+
+**Rollback to cordova 5.0.0**
+
+```sudo npm install -g cordova@5.0.0```
+This fixes some ng-animate issues...
+
+---
+
+**Fix Grunt.**
+
+```
+sudo npm uninstall grunt-concurrent
+sudo npm install grunt-concurrent@1.0.0
+```
+
+---
+
+**Install Compass** (requires Ruby and Ruby-gem [included in Ubuntu]).
+```
+sudo gem install compass
+```
+
+---
+
+**Serve the code**
+
+First time running the code start with Ionic to choose preffered address (tested with option 'localhost')
+```
+ionic address
+```
+Choose for example 'localhost'
+
+
+```
+grunt serve
+```
+---
+
+# Deploying to device
+
+**(Android)**
+Note that you have to install android SDK
+and add some stuff to $PATH variable...
+```
+cordova platform add android
+ionic build android
+ionic run android
+```
+
+**(IOS)**
+IOS requires you to have Apple Developer program.
+However you can use a simulator to run your app
+
+```
+npm install ios-sim -g
+cordova platform add ios
+ionic build ios
+ionic run ios
+```
+
+
+
+

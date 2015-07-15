@@ -1,27 +1,24 @@
 (function() { 'use strict';
 /**
  * @ngdoc function
- * @name viiniviikari.controller:SinglePostCtrl
+ * @name viiniviikariMobile.controller:AccountCtrl
  * @description
- * # SinglePostCtrl
- * Controller for a single post
+ * # AccountCtrl
+ * Controller for users account page
  */
 
 angular
 	.module('viiniviikariMobile')
-	.controller('SinglePostCtrl', function(){
+	.controller('AccountCtrl', function(){
 		/* jshint validthis: true */
 		var vm = this;
-		vm.testi = 'moi';
 
 		activate();
 		return vm;
 		/////////////////////
 
-
-
 		function activate(){
-			console.log('hae yksi post');
+			console.log('tee jotain');
 		}
 	});
 
