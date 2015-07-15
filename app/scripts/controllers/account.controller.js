@@ -15,7 +15,7 @@ angular
 
 		activate();
 		return vm;
-		/////////////////////
+		//////////////////////////////////////////
 
 		function activate(){
 			console.log('tee jotain');

@@ -44,7 +44,7 @@ angular
 		vm.currentYear = new Date().getFullYear();
 
 		return vm;
-		///////////////////////////
+		//////////////////////////////////////////
 
 		function loadAutocompleteTags(query){
 			var suggestions = [];

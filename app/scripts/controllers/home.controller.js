@@ -16,9 +16,7 @@ angular
 
 		activate();
 		return vm;
-		/////////////////////
-
-
+		//////////////////////////////////////////
 
 		function activate(){
 			console.log('hae viimeisimmät postit');

@@ -57,6 +57,16 @@ angular.module('viiniviikariMobile')
         controller: 'AccountCtrl as vm'
       }
     }
+  })
+
+  .state('tab.addpost', {
+    url: '/addpost',
+    views: {
+      'tab-account': {
+        templateUrl: 'views/admin/addpost.html',
+        controller: 'AddPostCtrl as vm'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback

@@ -40,28 +40,114 @@
 *******/
 .pull-right{ float: right; }
 .border-round{ @include border-radius(4px) }
+.show-overflow{ overflow: visible !important; }
 
 /***********************
 * Overwrite ionic styles
 ***********************/
-.bar, ion-header-bar.bar, .tabs{
-  background-color: $main-color !important;
-}
-.bar .title, .bar .button.back-button, .bar .button.button-clear, ion-tabs.tabs-color-active-positive .tab-item{
-  color: #fff !important;
-}
-.bar-stable .button{
-    color: #fff;
-}
-.slider{
-  height: 100%;
-}
+.bar, ion-header-bar.bar, .tabs{ background-color: $main-color !important; }
+.bar .title, .bar .button.back-button, .bar .button.button-clear, ion-tabs.tabs-color-active-positive .tab-item{ color: #fff !important; }
+.bar-stable .button{ color: #fff; }
+.slider{ height: 100%;}
 #home .scroll { height: 100% }
-
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before{ background: $main-color-dark; border: $main-color-dark; }
+.item-radio input:checked ~ .item-content{ background: $main-color-dark; color: #fff; }
+.item-radio input:checked ~ .radio-icon{ color: #fff; }
 
 /***********************************APP STYLES*******************************************/
 
+/***************
+* Post header
+****************/
+.tab-posts {
+	.item-image, .tab-post-details .item-image{
+		background-size: cover;
+	  background-repeat: no-repeat;
+	  background-position: center center;
+	}
+	.item-image.no-img{
+		background-color: #eee;
+	}
+	.post-info-heading, .tab-post-details .post-info-heading{
+		height: 80px;
+	}
+	.post-rating, .tab-post-details .post-rating{
+		font-size: 22px;
+		font-weight: 500;
+		text-align: center;
+		@include border-radius(50%);
+		background-color: $main-color-light;
+		color: #fff;
+		height: 40px;
+	  width: 40px;
+	  line-height: 40px;
+	}
+}
+
+/***************
+* Tags input
+****************/
+.tags-wrapper{
+	background-color: $main-color-light;
+	margin: -10px;
+  	padding: 10px;
+
+	h3{ color: #fff; }
+}
+
+tags-input {
+	.tags{
+		@include border-radius(32px);
+		@include box-shadow(0px 0px 0px 0 #fff);
+		border: 2px solid $main-color-dark;
+		color: $text-color;
+		padding: 4px;
+
+		.tag-item{
+			@include border-radius(16px);
+		  	padding: 0px 10px;
+		  	background: #FFF;
+		  	border: 1px solid $main-color-dark;
+		}
+	}
+	.tags.focused{
+		@include box-shadow(0px 0px 0px 0 #fff);
+	}
+}
 
 
 
-
+/***************
+* Add post page
+****************/
+.add-post-page label{
+  color: #888;
+}
+.add-post-page .main-label{
+  font-size: 18px;
+  color: initial;
+}
+.form-section{
+  border-left: 5px solid #ddd;
+  padding: 10px;
+  position: relative;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.form-section.colorfocus{
+  border-left: 5px solid #AD1457;
+  background-color: #eee;
+}
+.form-section .wine-type-choices label{
+  margin-right: 10px;
+}
+.form-section .glyphicon-ok{
+  float: right;
+  font-size: 15px;
+  color: #009900;
+}
+span.help-text{
+  font-size: 12px;
+  color: #666;
+  display: inline-block;
+}

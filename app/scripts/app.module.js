@@ -17,7 +17,8 @@ angular.module('viiniviikariMobile', [
   'ngSanitize',
   'ionic',
   'firebase',
-  'ngCordova'
+  'ngCordova',
+  'ngTagsInput'
 ])
 
 // Firebase url constant

@@ -11,6 +11,8 @@ angular
 	.module('viiniviikariMobile')
 	.controller('LoginCtrl', function(){
 		/* jshint validthis: true */
+
+		//////////////////////////////////////////
 		
 	});
 

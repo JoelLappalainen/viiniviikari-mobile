@@ -1,27 +1,156 @@
-<ion-view view-title="Your Title!">
-	<ion-content class="add-post-page padding">
-		<div class="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2">
-			<h1>Lisää uusi arvostelu</h1>
-			<form ng-submit="vm.validatePost()" class="form inline-form">
-				<!-- <select>
-					<option selected disabled>Valitse Kategoria</option>
-					<option ng-repeat="type in vm.postTypes">{{type}}</option>
-				</select> -->
-				<label>Arvostelun otsikko:</label><input ng-model="vm.post.title" type="text" autofocus require placeholder="Anna otsikko"  class="form-control">
-				<br>
-				<label>Yksityiskohdat:</label>
-				<div>
+<!-- 
+maakunta
+alkuperäisalue / tuotantoalue
+viinityyppi
+kylä
+palsta
+monta luokkaa:
+- everyday wine
+- fine dining
+- expert
+hintahaarukka
+-->
+<ion-view view-title="Lisää arvostelu">
+	<ion-content class="padding">
+		<span style="color:#888;">* merkillä olevat ovat pakollisia</span>
 
-				</div>
-				<div class="container-fluid text-center">
-					<button ng-click="vm.addDetailField()" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span></button>
-				</div>
-				<label>Kuvaus:</label><textarea ng-model="vm.post.description" type="text" require placeholder="Anna kuvaus" class="form-control"></textarea>
-				<br>
-				<label>Arvosana:</label><input ng-model="vm.post.rating" type="number" min="0" max="100" require placeholder="Anna arvosana" class="form-control">
-				<br>
-				<button type="submit">Tallenna</button>
-			</form>
-		</div>
+		<form ng-submit="vm.validatePostData()" class="list">
+
+			<div class="item item-divider">Arvostelun otsikko *</div>
+			<label class="item item-input">
+				<input ng-model="vm.post.title" type="text" autofocus required placeholder="Esim: 'Painter's Cove Shiraz Cabernet 2014'">
+				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.title}"></span> -->
+			</label>
+			<br>
+
+			<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.type.content	}"></span> -->
+			<div class="item item-divider">Valitse viinin tyyppi *</div>
+			<label class="item item-radio">
+				<input type="radio" name="group" ng-model="vm.post.details.type.content" value="red">
+				<div class="item-content">Punaviini</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group" ng-model="vm.post.details.type.content" value="white">
+				<div class="item-content">Valkoviini</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group" ng-model="vm.post.details.type.content" value="rose">
+				<div class="item-content">Roseviini</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group" ng-model="vm.post.details.type.content" value="dessert">
+				<div class="item-content">Jälkiruokaviini</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group" ng-model="vm.post.details.type.content" value="sparkling">
+				<div class="item-content">Kuohuviini</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<label class="item item-radio">
+				<input type="radio" name="group" ng-model="vm.post.details.type.content" value="champagne">
+				<div class="item-content">Samppanja</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+			<br>
+
+			<div class="item item-divider">Rypäleet</div>
+				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.grapes.content[0]}"></span> -->
+				<!-- <span class="help-text">Kun alat kirjoittamaan voit valita rypäleen aukeavasta listasta tai kirjoittaa uuden rypäleen nimen ja painaa rivinvaihtoa.</span> -->
+			<div class="item show-overflow">
+			<tags-input ng-model="vm.post.details.grapes.content" placeholder="Kirjoita rypäleen nimi">
+	    	<auto-complete source="vm.loadAutocompleteTags($query)"></auto-complete>
+	    </tags-input>
+	    </div>
+			<!-- <input class="form-control" type="text" ng-model="vm.post.details.grapes.content" placeholder="Erottele pilkulla ja välilyönnillä"> -->
+			<br>
+
+			<div class="item item-divider">Yksityiskohdat</div>
+			<label class="item item-input">
+				<span class="input-label">Vuosi *</span>
+				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.year.content}"></span> -->
+				<input type="number" min="1800" max="{{vm.currentYear}}" placeholder="Anna vuosiluku" ng-model="vm.post.details.year.content" required>
+			</label>
+
+			<label class="item item-input">
+				<span class="input-label">Tuottaja *</span>
+				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.producer.content}"></span> -->
+				<input class="form-control" type="text" placeholder="Anna tuottaja" ng-model="vm.post.details.producer.content" required>
+			</label>
+
+			<label class="item item-input">
+				<span class="input-label">Maa *</span>
+				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.country.content}"></span> -->
+				<input type="text" placeholder="Anna maa" ng-model="vm.post.details.country.content" required>
+			</label>
+
+			<label class="item item-input">
+				<span class="input-label">Alue</span>
+				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.location.content}"></span> -->
+				<input type="text" placeholder="Anna viinialue" ng-model="vm.post.details.location.content">
+			</label>
+
+			<label class="item item-input">
+				<span class="input-label">Palsta</span>
+				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.plot.content}"></span> -->
+				<input type="text" placeholder="Anna viinipalsta" ng-model="vm.post.details.plot.content">
+			</label>
+
+			<label class="item item-input">
+				<span class="input-label">Litramäärä</span>
+				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.litres.content}"></span> -->
+				<input type="number" placeholder="Anna pullon koko" min="0" step="0.01" ng-model="vm.post.details.litres.content" placeholder="Esim: 0.75 tai 1">
+			</label>
+
+			<label class="item item-input">
+				<span class="input-label">Hintaluokka</span>
+				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.price.content}"></span> -->
+				<input type="number" placeholder="Anna hintaluokka" min="1" ng-model="vm.post.details.price.content" placeholder="Esim: 10 tai 25">
+			</label>
+			<br>
+
+			<div class="item item-divider">Kuvaus *</div>
+			<label class="item item-input">
+				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : vm.post.description == ''}"></span> -->
+				<textarea ng-model="vm.post.description" type="text" required placeholder="Anna vapaamuotoinen kuvaus viinistä"></textarea>
+			</label>
+			<br>
+
+			<!-- HUOM RUOAN LISÄYS EI TOIMI VIELÄ! -->
+			<div class="item item-divider">Sopivat ruoat</div>
+			<li class="item item-checkbox" ng-repeat="option in vm.foodOptions">
+				<label class="checkbox">
+	      	<input type="checkbox">
+	     	</label>
+	     	{{option}}
+			</li>
+			<br>
+
+			<div class="item item-divider">Kategoria *</div>
+			<label class="item item-radio" ng-repeat="category in vm.categoryOptions" >
+				<input type="radio" name="group2" ng-model="vm.post.category" ng-value="category">
+		    <div class="item-content">{{category}}</div>
+		    <i class="radio-icon ion-checkmark"></i>
+			</label>
+			<br>
+
+			<div class="item item-divider">Arvosana (1-5) *</div>
+			<div class="item range">
+			  <i class="icon ion-thumbsdown"></i>
+			  <input type="range" name="volume">
+			  <i class="icon ion-thumbsup"></i>
+			</div>
+			<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : vm.post.rating == 0}"></span> -->
+			<!-- <label class="item item-input">
+				<input ng-model="vm.post.rating" type="number" min="1" max="5" placeholder="Anna arvosana" class="form-control">
+			</label> -->
+			<br>
+
+			<button class="button button-full btn-positive" type="submit">Tallenna</button>
+		</form>
+
 	</ion-content>
 </ion-view>
