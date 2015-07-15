@@ -2,8 +2,8 @@
 	<ion-content class="padding">
 		<div>Kaikki arvostelut</div>
 		<div>Ylälaitaan input jonka avulla voi filtteröidä tageilla</div>
-		<div class="list card" ng-repeat="post in vm.allposts">
-			<div class="item item-avatar">
+		<div class="list card" ng-repeat="post in vm.allposts" href="#/tab/post-details/{{post.$id}}">
+			<div class="item item-thumbnail-left">
 				<img ng-src="{{post.imgUrl}}">
 				<h2>{{post.title}}</h2>
 				<p>{{post.details.country.content}}</p>

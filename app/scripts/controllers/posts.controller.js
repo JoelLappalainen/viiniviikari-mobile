@@ -9,16 +9,27 @@
 
 angular
 	.module('viiniviikariMobile')
-	.controller('PostsCtrl', function(Post){
+	.controller('PostsCtrl', function($ionicLoading, Post){
 		/* jshint validthis: true */
 		var vm = this;
 
-		//vm.getPosts = getPosts;
+		showLoading();
 		activate();
 		/////////////////////
 
+		function showLoading(){
+	    $ionicLoading.show({
+	      template: '<ion-spinner></ion-spinner>',
+	    });
+	  }
+
 		function activate(){
-			vm.allposts = Post.all;
+			Post.all.$loaded().then(function(success){
+				vm.allposts = success;
+				$ionicLoading.hide();
+			}, function(error){
+				console.log(error);
+			});
 		}
 
 	});

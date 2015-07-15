@@ -9,19 +9,23 @@
 
 angular
 	.module('viiniviikariMobile')
-	.controller('PostDetailsCtrl', function(){
+	.controller('PostDetailsCtrl', function($ionicLoading){
 		/* jshint validthis: true */
 		var vm = this;
 		vm.testi = 'moi';
 
+		showLoading();
 		activate();
 		return vm;
 		/////////////////////
 
-
-
+		function showLoading(){
+		    $ionicLoading.show({
+		      template: '<ion-spinner></ion-spinner>',
+		    });
+		  }
 		function activate(){
-			console.log('hae yksi post');
+			$ionicLoading.hide();
 		}
 	});
 
