@@ -2,9 +2,10 @@
 	<ion-content class="padding tab-posts">
 		<div class="tags-wrapper">
 			<h3>Etsi arvosteluja</h3>
-			<tags-input ng-model="vm.tags" placeholder="Lisää tagi, esim 'Shiraz'">
-        <auto-complete source="vm.loadTags($query)"></auto-complete>
-    	</tags-input>
+			<tags-input ng-model="vm.tags" placeholder="Lisää tagi, esim 'Shiraz'" on-tag-added="vm.filterData($tag)">
+
+<!-- 	        <auto-complete source="vm.loadTags($query)"></auto-complete> -->
+	    	</tags-input>
 		</div>
 		<div class="list card" ng-repeat="post in vm.allposts">
 			<div class="item item-thumbnail-left"  ng-click="vm.showDetails(post.$id)">
