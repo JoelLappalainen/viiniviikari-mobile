@@ -9,7 +9,7 @@
 
 angular
 	.module('viiniviikariMobile')
-	.controller('AddPostCtrl', function(Post, $log, $q){
+	.controller('AddPostCtrl', function(Post, $log, $q, $state, $cordovaToast){
 		/* jshint validthis: true */
 		var vm = this;
 		vm.foodOptions = ['Nauta', 'Porsas', 'Lammas', 'Kana', 'Riista', 'Rasvainen kala', 'Vähärasvainen kala', 'Äyriäiset', 'Pasta', 'Salaatti'];
@@ -85,11 +85,24 @@ angular
 
 		function submitPost(){
 			generateTags().then(function(tags){
-				console.log(tags);
 				Post.create(vm.post).then(function(e){
-					// tyhjennä post variable
-					console.log(e);
-					clearPostForm();
+					// käytä tätä kun devaat koneella //////////
+					//clearPostForm();
+			        //$state.go('tab.home');
+			        ////////////////////////////////////////////
+
+			        // ja tätä kun laitat appsin puhelimelle////
+					$cordovaToast
+			        .show('Arvostelu lisätty!', 'short', 'center')
+			        .then(function(success) {
+			          console.log('success: '+success);
+			          // empty fields
+			          clearPostForm();
+			          $state.go('tab.account');
+			        }, function (error) {
+			          window.alert('error --> '+error);
+			        });
+			        /////////////////////////////////////////////
 				});
 			});
 		}
