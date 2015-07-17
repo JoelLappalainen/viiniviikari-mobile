@@ -9,7 +9,7 @@
 
 angular
 	.module('viiniviikariMobile')
-	.controller('PostsCtrl', function($state, $ionicLoading, Post, Tags){
+	.controller('PostsCtrl', function($state, $ionicLoading, Post){
 		/* jshint validthis: true */
 		var vm = this;
 
@@ -32,11 +32,13 @@ angular
 	  }
 
 	  function activate(){
+	  	window.alert('Starting to load posts...');
 			Post.all.$loaded().then(function(success){
+				window.alert('Posts loaded!');
 				vm.allposts = success;
 				$ionicLoading.hide();
 			}, function(error){
-				console.log(error);
+				window.alert(error);
 			});
 		}
 
@@ -46,7 +48,7 @@ angular
 		}
 
 		function loadTags(){
-			console.log(Tags.all);
+			//console.log(Tags.all);
 			return [{text : 'moi'}, {text : 'moi1'}, {text : 'moi2'}, {text : 'moi3'}];
 		}
 
