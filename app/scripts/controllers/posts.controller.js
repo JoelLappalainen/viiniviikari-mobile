@@ -9,7 +9,7 @@
 
 angular
 	.module('viiniviikariMobile')
-	.controller('PostsCtrl', function($state, $ionicLoading, Post){
+	.controller('PostsCtrl', function($state, $ionicLoading, _, Post){
 		/* jshint validthis: true */
 		var vm = this;
 
@@ -31,7 +31,7 @@ angular
 
 		//filterData- function by tags
 		function filterData(tag){
-			console.log(vm.filteredData);
+			// console.log(vm.filteredData);
 			for (var i = vm.filteredData.length - 1; i >= 0; i--) {
 				var filter = true;
 				for(var j = vm.filteredData[i].tags.length - 1; j >= 0; j--){
@@ -42,32 +42,34 @@ angular
 				if(filter){
 					vm.filteredData.splice(i, 1);
 				}
-			}	
-			console.log(vm.filteredData);
+			}
 		}
+
 		//filterData- function when removing a tag
 		function filterDataLess(){
 
-			vm.filteredData = [];
-			if(vm.tags.length){
-				for(var j = vm.allposts.length - 1; j >= 0; j--){
-					for(var k = vm.allposts[j].tags.length - 1; k >=0; k--){
-						var filter = true;
-						for(var i = vm.tags.length - 1; i >= 0; i--){
-							if( vm.allposts[j].tags.indexOf(vm.tags[i]) ){
-								filter = false;
-							}	
-						}
-						if(!filter){
-							vm.filteredData.push(vm.allposts[j]);
-						}
+			if (vm.tags.length){
+				console.time('timer');
+				vm.filteredData = [];
+				var tmpFilterTagsList = _.map(vm.tags, function(tag){ return tag.text.toLowerCase(); });
+				var count;
+
+				angular.forEach(vm.allposts, function(post){
+					count = 0;
+					angular.forEach(post.tags, function(tag){
+						if ( _.contains(tmpFilterTagsList, tag.toLowerCase()) ){ count++; }
+					});
+					if (count === vm.tags.length){
+						vm.filteredData.push(post);
 					}
-				}
+				});
+				console.timeEnd('timer');
 			}
 			else{
+				vm.filteredData = [];
 				angular.forEach(vm.allposts, function(post){
 					vm.filteredData.push(post);
-				});
+				});	
 			}
 		}
 			
@@ -82,7 +84,10 @@ angular
 	  function activate(){
 			Post.all.$loaded().then(function(success){
 				vm.allposts = success;
-				vm.filteredData = success;
+				vm.filteredData = [];
+				angular.forEach(success, function(post){
+					vm.filteredData.push(post);
+				});
 
 				$ionicLoading.hide();
 			}, function(error){

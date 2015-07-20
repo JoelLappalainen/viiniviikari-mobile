@@ -107,15 +107,17 @@ angular
 
 		function validatePostData(){
 			// validaatiot tähän...
-			window.alert('from validatePostData');
+			// window.alert('from validatePostData');
 			submitPost();
 		}
 
 		function submitPost(){
 			showLoading();
 			generateTags().then(function(tags){
+				window.alert('generated tags');
 				vm.post.tags = tags;
 				Post.create(vm.post).then(function(){
+					window.alert('post saved');
 					// käytä tätä kun devaat koneella //////////
 					//clearPostForm();
 			    //$state.go('tab.home');
