@@ -13,25 +13,16 @@ angular
 		/* jshint validthis: true */
 		var vm = this;
 
-		//simulates allPosts variable
-		var TEST_DATA = [
-											{tags: ['yksi', 'kaksi', 'aaa']},
-											{tags: ['yksi', 'kaksi', 'bbb']},
-											{tags: ['yksi', 'kaksi', 'ccc']},
-											{tags: ['yksi', 'kaksi', 'aaa']},
-											{tags: ['yksi', 'kaksi', 'bbb']},
-											{tags: ['yksi', 'ccc']},
-											{tags: ['yksi', 'aaa']}
-										];
-
 		// variables
 		vm.tags = [];
 
 		
 		// functions
+
 		vm.loadTags = loadTags;
 		vm.showDetails = showDetails;
 		vm.filterData = filterData;
+		vm.filterDataLess = filterDataLess;
 		
 		// init
 		showLoading();
@@ -40,12 +31,11 @@ angular
 
 		//filterData- function by tags
 		function filterData(tag){
-
 			console.log(vm.filteredData);
 			for (var i = vm.filteredData.length - 1; i >= 0; i--) {
 				var filter = true;
 				for(var j = vm.filteredData[i].tags.length - 1; j >= 0; j--){
-					if(vm.filteredData[i].tags[j] === tag.text){
+					if(vm.filteredData[i].tags[j].toLowerCase() === tag.text.toLowerCase()){
 						filter = false;
 					}
 				}
@@ -55,6 +45,33 @@ angular
 			}	
 			console.log(vm.filteredData);
 		}
+		//filterData- function when removing a tag
+		function filterDataLess(){
+
+			vm.filteredData = [];
+			if(vm.tags.length){
+				for(var j = vm.allposts.length - 1; j >= 0; j--){
+					for(var k = vm.allposts[j].tags.length - 1; k >=0; k--){
+						var filter = true;
+						for(var i = vm.tags.length - 1; i >= 0; i--){
+							if( vm.allposts[j].tags.indexOf(vm.tags[i]) ){
+								filter = false;
+							}	
+						}
+						if(!filter){
+							vm.filteredData.push(vm.allposts[j]);
+						}
+					}
+				}
+			}
+			else{
+				angular.forEach(vm.allposts, function(post){
+					vm.filteredData.push(post);
+				});
+			}
+		}
+			
+		
 
 		function showLoading(){
 	    $ionicLoading.show({
@@ -66,6 +83,7 @@ angular
 			Post.all.$loaded().then(function(success){
 				vm.allposts = success;
 				vm.filteredData = success;
+
 				$ionicLoading.hide();
 			}, function(error){
 				window.alert(error);

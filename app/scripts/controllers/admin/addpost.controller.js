@@ -59,6 +59,9 @@ angular
 				randFood = i%2 ? ['Nauta', 'Porsas', 'Lammas'] : ['Rasvainen kala', 'Äyriäiset'];
 				randTags = i%2 ? ['meta1', 'meta2', 'meta3', randCat, randPrize] : ['meta4', 'meta5', randCat, randPrize];
 				randTags = randTags.concat(randFood);
+				if(i >= 25){
+					randTags = randTags.concat('spessu');
+				}
 				randPost = {
 					title : 'Otsikko'+i.toString(),
 					image : '',
