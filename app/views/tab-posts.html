@@ -1,22 +1,27 @@
 <ion-view view-title="Arvostelut">
 	<ion-content class="padding tab-posts">
 		<div class="tags-wrapper">
+			<div class="blur-overlay"></div>
 			<h3>Etsi arvosteluja</h3>
 			<tags-input ng-model="vm.tags" placeholder="Lisää tagi, esim 'Shiraz'" on-tag-added="vm.filterData($tag)">
 
 <!-- 	        <auto-complete source="vm.loadTags($query)"></auto-complete> -->
-	    	</tags-input>
+	    </tags-input>
 		</div>
 		<div class="list card" ng-repeat="post in vm.allposts">
 			<div class="item item-thumbnail-left"  ng-click="vm.showDetails(post.$id)">
-				<!-- <img ng-src="{{post.imgUrl}}"> -->
-				<div class="item-image" ng-class="{'no-img' : !post.imgUrl}" style="background-image: url('{{post.imgUrl}}')"></div>
+
+				<img class="item-image" ng-if="post.image.length" ng-src="data:image/jpeg;base64,{{post.image}}">
+				<div ng-if="!post.image.length" class="item-image no-img"></div>
+
 				<div class="row row-center post-info-heading">
 					<div class="col">
 						<h2>{{post.title}}</h2>
 						<p>{{post.category}}</p>
+						<div style="display:inline;"><i ng-repeat="star in [] | range: post.rating" class="icon ion-star rating-star"></i></div>
 					</div>
-					<div class="post-rating"><span>{{post.rating}}</span></div>
+					<i class="icon ion-chevron-right icon-right"></i>
+					<!-- <div class="post-rating"><span>{{post.rating}}</span></div> -->
 				</div>
 			</div>
 		</div>

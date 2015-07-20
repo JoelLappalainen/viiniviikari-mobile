@@ -14,11 +14,17 @@ hintahaarukka
 	<ion-content class="padding">
 		<span style="color:#888;">* merkillä olevat ovat pakollisia</span>
 
-		<form ng-submit="vm.validatePostData()" class="list">
+		<form class="list">
+
+			<button class="button button-full btn-default" ng-click="vm.takePicture()">
+				<span ng-if="!vm.post.image.length">Ota kuva pullosta/etiketistä *</span>
+				<span ng-if="vm.post.image.length">Ota uusi kuva *</span>
+			</button>
+			<img ng-if="vm.post.image.length" ng-src="data:image/jpeg;base64,{{vm.post.image}}">
 
 			<div class="item item-divider">Arvostelun otsikko *</div>
 			<label class="item item-input">
-				<input ng-model="vm.post.title" type="text" autofocus required placeholder="Esim: 'Painter's Cove Shiraz Cabernet 2014'">
+				<input ng-model="vm.post.title" type="text" required placeholder="Esim: 'Painter's Cove Shiraz Cabernet 2014'">
 				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.title}"></span> -->
 			</label>
 			<br>
@@ -105,11 +111,12 @@ hintahaarukka
 				<input type="number" placeholder="Anna pullon koko" min="0" step="0.01" ng-model="vm.post.details.litres.content" placeholder="Esim: 0.75 tai 1">
 			</label>
 
-			<label class="item item-input">
+			<!-- TEE DOLLARI MERKKI VALINTA TAI SLIDER -->
+			<!-- <label class="item item-input">
 				<span class="input-label">Hintaluokka</span>
-				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.price.content}"></span> -->
-				<input type="number" placeholder="Anna hintaluokka" min="1" ng-model="vm.post.details.price.content" placeholder="Esim: 10 tai 25">
-			</label>
+				<span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.price.content}"></span>
+				<input type="text" placeholder="Anna hintaluokka" min="1" ng-model="vm.post.details.price.content" placeholder="Esim: 10 tai 25">
+			</label> -->
 			<br>
 
 			<div class="item item-divider">Kuvaus *</div>
@@ -156,7 +163,7 @@ hintahaarukka
 			</label> -->
 			<br>
 
-			<button class="button button-full btn-positive" type="submit" ng-click="vm.validatePostData()">Tallenna</button>
+			<button class="button button-full btn-positive" ng-click="vm.validatePostData()">Tallenna</button>
 		</form>
 
 	</ion-content>

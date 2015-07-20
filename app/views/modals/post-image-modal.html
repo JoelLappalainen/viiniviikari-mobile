@@ -5,7 +5,7 @@
   <ion-content class="padding">
     <div class="list card">
       <div class="item item-image">
-        <img ng-src="{{vm.post.imgUrl}}">
+        <img ng-src="data:image/jpeg;base64,{{vm.post.image}}">
       </div>
     </div>
     <button class="button button-full btn-default" ng-click="closeModal()">Sulje</button>

@@ -9,18 +9,25 @@
 
 angular
 	.module('viiniviikariMobile')
-	.controller('AddPostCtrl', function(Post, $log, $q, $state, $cordovaToast){
+	.controller('AddPostCtrl', function(Post, $log, $q, $state, $cordovaToast, $ionicLoading, $cordovaCamera){
 		/* jshint validthis: true */
 		var vm = this;
+		vm.currentYear = new Date().getFullYear();
 		vm.foodOptions = ['Nauta', 'Porsas', 'Lammas', 'Kana', 'Riista', 'Rasvainen kala', 'Vähärasvainen kala', 'Äyriäiset', 'Pasta', 'Salaatti'];
 		vm.categoryOptions = ['Arkiviini', 'Fine Dining', 'Expert'];
 		vm.tagsList = [];
 		vm.allPosts = Post.all;
 
+		//https://farm1.staticflickr.com/458/18379325189_72aa346583_q.jpg
 		vm.post = {
 			title : '',
-			imgUrl : 'https://farm1.staticflickr.com/458/18379325189_72aa346583_q.jpg',
-			details : 
+			image : '',
+			category : '',
+			description : '',
+			foodOptions : [],
+			rating : 0,
+			tags : [],
+			details :
 			{
 				grapes : {label:'Rypäleet', content: []},
 				year : {label:'Vuosi', content: ''},
@@ -31,19 +38,14 @@ angular
 				plot : {label:'Palsta', content: ''},
 				litres : {label:'Litramäärä', content: ''},
 				prize : {label:'Hintaluokka', content: ''}
-			},
-			category : '',
-			description : '',
-			foodOptions : [],
-			rating : 0,
-			tags : []
+			}
 		};
 
 		// vm.submitPost = submitPost;
 		vm.toggleFoodSelection = toggleFoodSelection;
 		vm.validatePostData = validatePostData;
 		vm.loadAutocompleteTags = loadAutocompleteTags;
-		vm.currentYear = new Date().getFullYear();
+		vm.takePicture = takePicture;
 
 		//generateRandomPosts();
 
@@ -83,40 +85,53 @@ angular
 			}
 		}
 
-		function submitPost(){
-			generateTags().then(function(tags){
-				Post.create(vm.post).then(function(e){
-					// käytä tätä kun devaat koneella //////////
-					//clearPostForm();
-			        //$state.go('tab.home');
-			        ////////////////////////////////////////////
+		function showLoading(){
+		  $ionicLoading.show({
+		    template: '<ion-spinner></ion-spinner>',
+		  });
+		}
 
-			        // ja tätä kun laitat appsin puhelimelle////
-					$cordovaToast
-			        .show('Arvostelu lisätty!', 'short', 'center')
-			        .then(function(success) {
-			          console.log('success: '+success);
-			          // empty fields
-			          clearPostForm();
-			          $state.go('tab.account');
-			        }, function (error) {
-			          window.alert('error --> '+error);
-			        });
-			        /////////////////////////////////////////////
-				});
-			});
+		function hideLoading(){
+			$ionicLoading.hide();
 		}
 
 		function validatePostData(){
 			// validaatiot tähän...
-			console.log(vm.post);
+			window.alert('from validatePostData');
 			submitPost();
+		}
+
+		function submitPost(){
+			showLoading();
+			generateTags().then(function(tags){
+				vm.post.tags = tags;
+				Post.create(vm.post).then(function(){
+					// käytä tätä kun devaat koneella //////////
+					//clearPostForm();
+			    //$state.go('tab.home');
+			    ////////////////////////////////////////////
+
+			    // ja tätä kun laitat appsin puhelimelle////
+					$cordovaToast
+		        .show('Arvostelu lisätty!', 'short', 'center')
+		        .then(function(success) {
+		          console.log('success: '+success);
+		          // empty fields
+		          clearPostForm();
+		          hideLoading();
+		          $state.go('tab.account');
+		        }, function (error) {
+		          window.alert('error --> '+error);
+		        });
+		      /////////////////////////////////////////////
+				});
+			});
 		}
 
 		function clearPostForm(){
 			vm.post = {
 				title : '',
-				imgUrl : 'https://farm1.staticflickr.com/458/18379325189_72aa346583_q.jpg',
+				image : '',
 				details : 
 				{
 					grapes : {label:'Rypäleet', content: []},
@@ -135,6 +150,28 @@ angular
 				rating : 0,
 				tags : []
 			};
+		}
+
+		function takePicture(){
+			var options = {
+          quality : 60,
+          destinationType : Camera.DestinationType.DATA_URL,
+          sourceType : Camera.PictureSourceType.CAMERA,
+          allowEdit : true,
+          encodingType: Camera.EncodingType.JPEG,
+          popoverOptions: CameraPopoverOptions,
+          targetWidth: 500,
+          targetHeight: 500,
+          correctOrientation: true,
+          saveToPhotoAlbum: false
+      };
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+        // bind to post image
+        vm.post.image = imageData;
+        $cordovaCamera.cleanup();
+      }, function(error) {
+        console.error(error);
+      });
 		}
 
 		function loadAutocompleteTags(query){

@@ -9,16 +9,21 @@
 
 angular
 	.module('viiniviikariMobile')
-	.controller('AccountCtrl', function(){
+	.controller('AccountCtrl', function($state){
 		/* jshint validthis: true */
 		var vm = this;
 
-		activate();
+		vm.addNewPost = addNewPost;
+
+		// activate();
 		return vm;
 		//////////////////////////////////////////
 
-		function activate(){
-			console.log('tee jotain');
+		// function activate(){
+		// 	console.log('tee jotain');
+		// }
+		function addNewPost(){
+			$state.go('tab.addpost');
 		}
 	});
 
