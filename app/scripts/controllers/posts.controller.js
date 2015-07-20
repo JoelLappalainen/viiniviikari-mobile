@@ -26,7 +26,7 @@ angular
 
 		// variables
 		vm.tags = [];
-		vm.filteredData = TEST_DATA;
+
 		
 		// functions
 		vm.loadTags = loadTags;
@@ -40,8 +40,8 @@ angular
 
 		//filterData- function by tags
 		function filterData(tag){
-			console.log(tag);
-			//oikeeesti testDatan tilalle tulee filteredData
+
+			console.log(vm.filteredData);
 			for (var i = vm.filteredData.length - 1; i >= 0; i--) {
 				var filter = true;
 				for(var j = vm.filteredData[i].tags.length - 1; j >= 0; j--){
@@ -49,9 +49,7 @@ angular
 						filter = false;
 					}
 				}
-				console.log(filter);
 				if(filter){
-					//console.log("moi");
 					vm.filteredData.splice(i, 1);
 				}
 			}	
@@ -67,6 +65,7 @@ angular
 	  function activate(){
 			Post.all.$loaded().then(function(success){
 				vm.allposts = success;
+				vm.filteredData = success;
 				$ionicLoading.hide();
 			}, function(error){
 				window.alert(error);

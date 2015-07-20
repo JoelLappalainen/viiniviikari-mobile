@@ -19,7 +19,7 @@ angular
 
 		vm.post = {
 			title : '',
-			imgUrl : 'https://farm1.staticflickr.com/458/18379325189_72aa346583_q.jpg',
+			image : '',
 			details : 
 			{
 				grapes : {label:'Rypäleet', content: []},
@@ -57,13 +57,18 @@ angular
 				randCat = i%2 ? 'Arkiviini' : 'Fine Dining';
 				randPrize = i%2 ? 'Kallis' : 'Halpa';
 				randFood = i%2 ? ['Nauta', 'Porsas', 'Lammas'] : ['Rasvainen kala', 'Äyriäiset'];
-				randTags = i%2 ? ['meta1', 'meta2', 'meta3'] : ['meta4', 'meta5'];
+				randTags = i%2 ? ['meta1', 'meta2', 'meta3', randCat, randPrize] : ['meta4', 'meta5', randCat, randPrize];
+				randTags = randTags.concat(randFood);
 				randPost = {
 					title : 'Otsikko'+i.toString(),
-					imgUrl : 'https://farm1.staticflickr.com/458/18379325189_72aa346583_q.jpg',
+					image : '',
 					details : 
 					{
-						grapes : {label:'Rypäleet', content: ['Rybäle'+(i%2).toString(), 'Ryphäle'+i.toString(), 'Ryyppäle'+(i%3).toString()]},
+						grapes : {label:'Rypäleet', content: [
+							{text:'Rybäle'+(i%2).toString()}, 
+							{text:'Ryphäle'+i.toString()},
+							{text:'Ryyppäle'+(i%3).toString()}
+						]},
 						year : {label:'Vuosi', content: (i*100).toString()},
 						producer : {label:'Tuottaja', content: 'Tuottaja'+i.toString()},
 						type : {label:'Tyyppi', content: 'Tyyppi'+i.toString()},
@@ -79,7 +84,9 @@ angular
 					rating : (i%2)+2,
 					tags : randTags
 				};
+				//console.log(randPost);
 				Post.create(randPost);
+
 			}
 		}
 
@@ -116,7 +123,7 @@ angular
 		function clearPostForm(){
 			vm.post = {
 				title : '',
-				imgUrl : 'https://farm1.staticflickr.com/458/18379325189_72aa346583_q.jpg',
+				image : '',
 				details : 
 				{
 					grapes : {label:'Rypäleet', content: []},
@@ -169,6 +176,7 @@ angular
 		     }
 		}
 
+		
 		function generateTags(){
 			return $q(function(resolve, reject){
 				if (vm.post.title) {
