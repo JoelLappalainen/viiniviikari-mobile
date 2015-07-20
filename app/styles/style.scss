@@ -50,8 +50,8 @@
 .bar-stable .button{ color: #fff; }
 .slider{ height: 100%;}
 #home .scroll { height: 100% }
-.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before{ background: $main-color-dark; border: $main-color-dark; }
-.item-radio input:checked ~ .item-content{ background: $main-color-dark; color: #fff; }
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before{ background: $main-color-light; border: $main-color-light; }
+.item-radio input:checked ~ .item-content{ background: $main-color-light; color: #fff; }
 .item-radio input:checked ~ .radio-icon{ color: #fff; }
 
 /***********************************APP STYLES*******************************************/
@@ -139,6 +139,14 @@ tags-input {
 /***************
 * Add post page
 ****************/
+.price-option.selected{
+	background-color: $main-color-light;
+	color: #fff;
+	@include border-radius(6px);
+}
+
+
+
 .add-post-page label{
   color: #888;
 }

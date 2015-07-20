@@ -110,13 +110,18 @@ hintahaarukka
 				<!-- <span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.litres.content}"></span> -->
 				<input type="number" placeholder="Anna pullon koko" min="0" step="0.01" ng-model="vm.post.details.litres.content" placeholder="Esim: 0.75 tai 1">
 			</label>
+			<br>
 
 			<!-- TEE DOLLARI MERKKI VALINTA TAI SLIDER -->
-			<!-- <label class="item item-input">
-				<span class="input-label">Hintaluokka</span>
-				<span class="glyphicon glyphicon-ok" ng-class="{hidden : !vm.post.details.price.content}"></span>
-				<input type="text" placeholder="Anna hintaluokka" min="1" ng-model="vm.post.details.price.content" placeholder="Esim: 10 tai 25">
-			</label> -->
+			<div class="item item-divider">Hintaluokka *</div>
+			<div class="item item-input">
+				<div class="row text-center">
+					<div class="col price-option" ng-click="vm.givePrice('1')" ng-class="{'selected' : vm.post.details.prize.content === '1'}"><i class="ion-social-euro" ></i></div>
+					<div class="col price-option" ng-click="vm.givePrice('2')" ng-class="{'selected' : vm.post.details.prize.content === '2'}"><i ng-repeat="x in [] | range: 2" class="ion-social-euro"></i></div>
+					<div class="col price-option" ng-click="vm.givePrice('3')" ng-class="{'selected' : vm.post.details.prize.content === '3'}"><i ng-repeat="x in [] | range: 3" class="ion-social-euro"></i></div>
+				</div>	
+			</div>
+			<div>hinta: {{vm.post.details.prize}}</div>
 			<br>
 
 			<div class="item item-divider">Kuvaus *</div>

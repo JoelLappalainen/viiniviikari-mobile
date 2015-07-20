@@ -46,6 +46,7 @@ angular
 		vm.validatePostData = validatePostData;
 		vm.loadAutocompleteTags = loadAutocompleteTags;
 		vm.takePicture = takePicture;
+		vm.givePrice = givePrice;
 
 		//generateRandomPosts();
 
@@ -111,13 +112,18 @@ angular
 			submitPost();
 		}
 
+		function givePrice(price){
+			console.log('dafaga');
+			vm.post.details.prize.content = price;
+		}
+
+
 		function submitPost(){
 			showLoading();
 			generateTags().then(function(tags){
-				window.alert('teemun koodi kusee');
+
 				vm.post.tags = tags;
 				Post.create(vm.post).then(function(){
-					window.alert('ei kuse');
 					// käytä tätä kun devaat koneella //////////
 					//clearPostForm();
 			    //$state.go('tab.home');
@@ -154,7 +160,7 @@ angular
 					location : {label:'Alue', content: ''},
 					plot : {label:'Palsta', content: ''},
 					litres : {label:'Litramäärä', content: ''},
-					prize : {label:'Hintaluokka', content: 0}
+					prize : {label:'Hintaluokka', content: ''}
 				},
 				category : '',
 				description : '',
