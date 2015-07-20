@@ -50,27 +50,25 @@ angular
 
 			vm.filteredData = [];
 			if(vm.tags.length){
-				for(var j = vm.allposts.length - 1; j >= 0; j--){
-					for(var k = vm.allposts[j].tags.length - 1; k >=0; k--){
-						var filter = true;
-						for(var i = vm.tags.length - 1; i >= 0; i--){
-							if( vm.allposts[j].tags.indexOf(vm.tags[i]) ){
-								filter = false;
-							}	
-						}
-						if(!filter){
-							vm.filteredData.push(vm.allposts[j]);
-						}
+				var count = 0;
+				for(var i = vm.tags.length - 1; i >= 0; i--){
+					for(var j = vm.allposts.length -1; j >= 0; j--){
+						for(var k = vm.allposts[j].tags.length - 1; k >= 0; k--){
+							if(vm.tags[i].text.toLowerCase() === vm.allposts[j].tags[k].toLowerCase()){
+								count += 1;
+							}
+						}						
+					}
+					if(count === vm.tags.length){
+						vm.filteredData.push(vm.allposts[j]);
 					}
 				}
 			}
 			else{
-				angular.forEach(vm.allposts, function(post){
-					vm.filteredData.push(post);
-				});
+				vm.filteredData = angular.copy(vm.allposts);
 			}
+			console.log(vm.filteredData);
 		}
-			
 		
 
 		function showLoading(){
@@ -82,7 +80,7 @@ angular
 	  function activate(){
 			Post.all.$loaded().then(function(success){
 				vm.allposts = success;
-				vm.filteredData = success;
+				vm.filteredData = angular.copy(vm.allposts);
 
 				$ionicLoading.hide();
 			}, function(error){

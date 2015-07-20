@@ -114,8 +114,10 @@ angular
 		function submitPost(){
 			showLoading();
 			generateTags().then(function(tags){
+				window.alert('teemun koodi kusee');
 				vm.post.tags = tags;
 				Post.create(vm.post).then(function(){
+					window.alert('ei kuse');
 					// käytä tätä kun devaat koneella //////////
 					//clearPostForm();
 			    //$state.go('tab.home');
