@@ -113,7 +113,6 @@ angular
 		}
 
 		function givePrice(price){
-			console.log('dafaga');
 			vm.post.details.prize.content = price;
 		}
 

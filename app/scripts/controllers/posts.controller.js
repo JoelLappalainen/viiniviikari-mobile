@@ -15,7 +15,8 @@ angular
 
 		// variables
 		vm.tags = [];
-
+		vm.predicate = '-rating';
+		vm.reverse = true;
 		
 		// functions
 
@@ -23,6 +24,7 @@ angular
 		vm.showDetails = showDetails;
 		vm.filterData = filterData;
 		vm.filterDataLess = filterDataLess;
+		// vm.sort = sort;
 		
 		// init
 		showLoading();
@@ -69,6 +71,10 @@ angular
 				});	
 			}
 		}
+		// function sort(predicate){
+		// 		// vm.reverse = (predicate === nuorin) ? !vm.reverse : false;
+		// 	vm.predicate = predicate;
+		// }
 		
 		function showLoading(){
 	    $ionicLoading.show({
