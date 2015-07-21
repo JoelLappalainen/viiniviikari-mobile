@@ -30,14 +30,14 @@ angular
 			details :
 			{
 				grapes : {label:'Rypäleet', content: []},
-				year : {label:'Vuosi', content: ''},
+				year : {label:'Vuosi', content: 0},
 				producer : {label:'Tuottaja', content: ''},
 				type : {label:'Tyyppi', content: ''},
 				country : {label:'Maa', content: ''},
 				location : {label:'Alue', content: ''},
 				plot : {label:'Palsta', content: ''},
 				litres : {label:'Litramäärä', content: ''},
-				prize : {label:'Hintaluokka', content: ''}
+				price : {label:'Hintaluokka', content: ''}
 			}
 		};
 
@@ -55,12 +55,12 @@ angular
 
 
 		function generateRandomPosts(){
-			var randPost, randCat, randPrize, randFood, randTags;
+			var randPost, randCat, randPrice, randFood, randTags;
 			for (var i = 30 - 1; i >= 0; i--) {
 				randCat = i%2 ? 'Arkiviini' : 'Fine Dining';
-				randPrize = i%2 ? 'Kallis' : 'Halpa';
+				randPrice = i%2 ? 'Kallis' : 'Halpa';
 				randFood = i%2 ? ['Nauta', 'Porsas', 'Lammas'] : ['Rasvainen kala', 'Äyriäiset'];
-				randTags = i%2 ? ['meta1', 'meta2', 'meta3', randCat, randPrize] : ['meta4', 'meta5', randCat, randPrize];
+				randTags = i%2 ? ['meta1', 'meta2', 'meta3', randCat, randPrice] : ['meta4', 'meta5', randCat, randPrice];
 				randTags = randTags.concat(randFood);
 				if(i >= 25){
 					randTags = randTags.concat('spessu');
@@ -75,14 +75,14 @@ angular
 							{text:'Ryphäle'+i.toString()},
 							{text:'Ryyppäle'+(i%3).toString()}
 						]},
-						year : {label:'Vuosi', content: (i*100).toString()},
+						year : {label:'Vuosi', content: (i*100)},
 						producer : {label:'Tuottaja', content: 'Tuottaja'+i.toString()},
 						type : {label:'Tyyppi', content: 'Tyyppi'+i.toString()},
 						country : {label:'Maa', content: 'Maa'+i.toString()},
 						location : {label:'Alue', content: 'Sijainti'+i.toString()},
 						plot : {label:'Palsta', content: 'Palsta'+i.toString()},
 						litres : {label:'Litramäärä', content: '1'},
-						prize : {label:'Hintaluokka', content: randPrize}
+						price : {label:'Hintaluokka', content: randPrice}
 					},
 					category : randCat,
 					description : 'Totally awesome!',
@@ -113,7 +113,7 @@ angular
 		}
 
 		function givePrice(price){
-			vm.post.details.prize.content = price;
+			vm.post.details.price.content = price;
 		}
 
 
@@ -159,7 +159,7 @@ angular
 					location : {label:'Alue', content: ''},
 					plot : {label:'Palsta', content: ''},
 					litres : {label:'Litramäärä', content: ''},
-					prize : {label:'Hintaluokka', content: ''}
+					price : {label:'Hintaluokka', content: ''}
 				},
 				category : '',
 				description : '',

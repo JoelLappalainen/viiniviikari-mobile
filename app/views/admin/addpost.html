@@ -116,12 +116,12 @@ hintahaarukka
 			<div class="item item-divider">Hintaluokka *</div>
 			<div class="item item-input">
 				<div class="row text-center">
-					<div class="col price-option" ng-click="vm.givePrice('1')" ng-class="{'selected' : vm.post.details.prize.content === '1'}"><i class="ion-social-euro" ></i></div>
-					<div class="col price-option" ng-click="vm.givePrice('2')" ng-class="{'selected' : vm.post.details.prize.content === '2'}"><i ng-repeat="x in [] | range: 2" class="ion-social-euro"></i></div>
-					<div class="col price-option" ng-click="vm.givePrice('3')" ng-class="{'selected' : vm.post.details.prize.content === '3'}"><i ng-repeat="x in [] | range: 3" class="ion-social-euro"></i></div>
+					<div class="col price-option" ng-click="vm.givePrice('1')" ng-class="{'selected' : vm.post.details.price.content === '1'}"><i class="ion-social-euro" ></i></div>
+					<div class="col price-option" ng-click="vm.givePrice('2')" ng-class="{'selected' : vm.post.details.price.content === '2'}"><i ng-repeat="x in [] | range: 2" class="ion-social-euro"></i></div>
+					<div class="col price-option" ng-click="vm.givePrice('3')" ng-class="{'selected' : vm.post.details.price.content === '3'}"><i ng-repeat="x in [] | range: 3" class="ion-social-euro"></i></div>
 				</div>	
 			</div>
-			<div>hinta: {{vm.post.details.prize}}</div>
+			<div>hinta: {{vm.post.details.price}}</div>
 			<br>
 
 			<div class="item item-divider">Kuvaus *</div>

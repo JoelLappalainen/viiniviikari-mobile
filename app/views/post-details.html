@@ -22,7 +22,9 @@
 			</div>
 
 		</div>
-		<div class="card">
+		<div class="ion-chevron-down text-center" ng-click="vm.toggleDetails()" ng-show="vm.hidden"></div>
+		<div class="ion-chevron-up text-center" ng-click="vm.toggleDetails()" ng-show="!vm.hidden"></div>
+		<div class="card" ng-show="!vm.hidden">
 			<!-- country -->
 			<div class="item item-divider">
 		    {{vm.post.details.country.label}}
@@ -62,10 +64,10 @@
 		  </div>
 		  <!-- price -->
 			<div class="item item-divider">
-		    {{vm.post.details.prize.label}}
+		    {{vm.post.details.price.label}}
 		  </div>
 		  <div class="item item-text-wrap">
-		    {{vm.post.details.prize.content}}
+		    {{vm.post.details.price.content}}
 		  </div>
 		  <!-- producer -->
 		  <div class="item item-divider">
@@ -83,6 +85,6 @@
 		  </div>		  
 
 		</div>
-
+		
 	</ion-content>
 </ion-view>

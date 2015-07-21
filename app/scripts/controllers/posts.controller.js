@@ -15,8 +15,7 @@ angular
 
 		// variables
 		vm.tags = [];
-		vm.predicate = '-rating';
-		vm.reverse = true;
+		vm.sort = 'rating';
 		
 		// functions
 
