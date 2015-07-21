@@ -30,7 +30,7 @@ angular
 			details :
 			{
 				grapes : {label:'Rypäleet', content: []},
-				year : {label:'Vuosi', content: ''},
+				year : {label:'Vuosi', content: 0},
 				producer : {label:'Tuottaja', content: ''},
 				type : {label:'Tyyppi', content: ''},
 				country : {label:'Maa', content: ''},
@@ -74,7 +74,7 @@ angular
 							{text:'Ryphäle'+i.toString()},
 							{text:'Ryyppäle'+(i%3).toString()}
 						]},
-						year : {label:'Vuosi', content: (i*100).toString()},
+						year : {label:'Vuosi', content: (i*100)},
 						producer : {label:'Tuottaja', content: 'Tuottaja'+i.toString()},
 						type : {label:'Tyyppi', content: 'Tyyppi'+i.toString()},
 						country : {label:'Maa', content: 'Maa'+i.toString()},
@@ -147,7 +147,7 @@ angular
 				details : 
 				{
 					grapes : {label:'Rypäleet', content: []},
-					year : {label:'Vuosi', content: ''},
+					year : {label:'Vuosi', content: 0},
 					producer : {label:'Tuottaja', content: ''},
 					type : {label:'Tyyppi', content: ''},
 					country : {label:'Maa', content: ''},
