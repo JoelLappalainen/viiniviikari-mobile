@@ -15,7 +15,7 @@ angular
 
 		// variables
 		vm.tags = [];
-
+		vm.sort = 'rating';
 		
 		// functions
 
@@ -23,6 +23,7 @@ angular
 		vm.showDetails = showDetails;
 		vm.filterData = filterData;
 		vm.filterDataLess = filterDataLess;
+		// vm.sort = sort;
 		
 		// init
 		showLoading();
@@ -44,12 +45,10 @@ angular
 				}
 			}
 		}
-
 		//filterData- function when removing a tag
 		function filterDataLess(){
 
 			if (vm.tags.length){
-				console.time('timer');
 				vm.filteredData = [];
 				var tmpFilterTagsList = _.map(vm.tags, function(tag){ return tag.text.toLowerCase(); });
 				var count;
@@ -63,7 +62,6 @@ angular
 						vm.filteredData.push(post);
 					}
 				});
-				console.timeEnd('timer');
 			}
 			else{
 				vm.filteredData = [];
@@ -72,9 +70,11 @@ angular
 				});	
 			}
 		}
-			
+		// function sort(predicate){
+		// 		// vm.reverse = (predicate === nuorin) ? !vm.reverse : false;
+		// 	vm.predicate = predicate;
+		// }
 		
-
 		function showLoading(){
 	    $ionicLoading.show({
 	      template: '<ion-spinner></ion-spinner>',
@@ -88,7 +88,6 @@ angular
 				angular.forEach(success, function(post){
 					vm.filteredData.push(post);
 				});
-
 				$ionicLoading.hide();
 			}, function(error){
 				window.alert(error);

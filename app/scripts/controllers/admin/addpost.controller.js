@@ -37,7 +37,7 @@ angular
 				location : {label:'Alue', content: ''},
 				plot : {label:'Palsta', content: ''},
 				litres : {label:'Litramäärä', content: ''},
-				prize : {label:'Hintaluokka', content: ''}
+				price : {label:'Hintaluokka', content: ''}
 			}
 		};
 
@@ -46,6 +46,7 @@ angular
 		vm.validatePostData = validatePostData;
 		vm.loadAutocompleteTags = loadAutocompleteTags;
 		vm.takePicture = takePicture;
+		vm.givePrice = givePrice;
 
 		//generateRandomPosts();
 
@@ -54,12 +55,12 @@ angular
 
 
 		function generateRandomPosts(){
-			var randPost, randCat, randPrize, randFood, randTags;
+			var randPost, randCat, randPrice, randFood, randTags;
 			for (var i = 30 - 1; i >= 0; i--) {
 				randCat = i%2 ? 'Arkiviini' : 'Fine Dining';
-				randPrize = i%2 ? 'Kallis' : 'Halpa';
+				randPrice = i%2 ? 'Kallis' : 'Halpa';
 				randFood = i%2 ? ['Nauta', 'Porsas', 'Lammas'] : ['Rasvainen kala', 'Äyriäiset'];
-				randTags = i%2 ? ['meta1', 'meta2', 'meta3', randCat, randPrize] : ['meta4', 'meta5', randCat, randPrize];
+				randTags = i%2 ? ['meta1', 'meta2', 'meta3', randCat, randPrice] : ['meta4', 'meta5', randCat, randPrice];
 				randTags = randTags.concat(randFood);
 				if(i >= 25){
 					randTags = randTags.concat('spessu');
@@ -81,7 +82,7 @@ angular
 						location : {label:'Alue', content: 'Sijainti'+i.toString()},
 						plot : {label:'Palsta', content: 'Palsta'+i.toString()},
 						litres : {label:'Litramäärä', content: '1'},
-						prize : {label:'Hintaluokka', content: randPrize}
+						price : {label:'Hintaluokka', content: randPrice}
 					},
 					category : randCat,
 					description : 'Totally awesome!',
@@ -107,17 +108,21 @@ angular
 
 		function validatePostData(){
 			// validaatiot tähän...
-			// window.alert('from validatePostData');
+			window.alert('from validatePostData');
 			submitPost();
 		}
+
+		function givePrice(price){
+			vm.post.details.price.content = price;
+		}
+
 
 		function submitPost(){
 			showLoading();
 			generateTags().then(function(tags){
-				window.alert('generated tags');
+
 				vm.post.tags = tags;
 				Post.create(vm.post).then(function(){
-					window.alert('post saved');
 					// käytä tätä kun devaat koneella //////////
 					//clearPostForm();
 			    //$state.go('tab.home');
@@ -154,7 +159,7 @@ angular
 					location : {label:'Alue', content: ''},
 					plot : {label:'Palsta', content: ''},
 					litres : {label:'Litramäärä', content: ''},
-					prize : {label:'Hintaluokka', content: 0}
+					price : {label:'Hintaluokka', content: ''}
 				},
 				category : '',
 				description : '',

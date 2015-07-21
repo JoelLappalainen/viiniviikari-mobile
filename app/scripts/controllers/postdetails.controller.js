@@ -13,7 +13,12 @@ angular
 		/* jshint validthis: true */
 		var vm = this;
 
+		//variabels
+		vm.hidden = true;
+
+		// functions
 		vm.openModal = openModal;
+		vm.toggleDetails = toggleDetails;
 
 		showLoading();
 		activate();
@@ -34,7 +39,6 @@ angular
 			}, function(error){
 				console.log(error);
 			});
-
 			// modalin takia joutuu käyttämään $scopea...
 			$ionicModal.fromTemplateUrl('views/modals/post-image-modal.html', {
 				scope: $scope,
@@ -50,6 +54,9 @@ angular
 				$scope.modal.remove();
 			}); 
 
+		}
+		function toggleDetails(){
+			vm.hidden = !vm.hidden;
 		}
 
 		function openModal() {
