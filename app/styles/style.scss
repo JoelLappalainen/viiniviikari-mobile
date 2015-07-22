@@ -181,11 +181,16 @@ span.help-text{
 /***************
 * Post details- page
 ****************/
-
-.card{
-  transition: 0.09s all linear !important;
-
+.slide-up-down.card{
+	transition: 0.1s all linear;
 }
-
+.slide-up-down.card.ng-hide{
+	margin-top: 100px;
+	opacity: 0;
+}
+.slide-up-down.card.ng-show{
+	margin-top: initial;
+	opacity: 1;
+}
 
 

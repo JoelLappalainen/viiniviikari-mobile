@@ -15,7 +15,7 @@ angular
 
 		// variables
 		vm.tags = [];
-		vm.sort = 'rating';
+		vm.sort = '-rating';
 		
 		// functions
 
