@@ -1,13 +1,21 @@
-<ion-view view-title="Arvostelut">
-	<ion-content class="padding tab-posts">
-		<div class="tags-wrapper">
-			<div class="blur-overlay"></div>
-			<h3>Etsi arvosteluja</h3>
-			<tags-input ng-model="vm.tags" placeholder="Lisää tagi, esim 'Shiraz'" on-tag-added="vm.filterData($tag)" on-tag-removed="vm.filterDataLess()">
-
-<!-- 	        <auto-complete source="vm.loadTags($query)"></auto-complete> -->
-	    </tags-input>
+<ion-view>
+	<ion-nav-title style="overflow:visible;">
+		<div class="bar bar-header item-input-inset" style="overflow:visible;">
+			<label class="item-input-wrapper">
+		    <i class="icon ion-ios-search placeholder-icon"></i>
+		    <tags-input ng-model="vm.tags" placeholder="Lisää tagi" add-on-blur="false" add-from-autocomplete-only="true" on-tag-added="vm.filterData($tag)" on-tag-removed="vm.filterDataLess()">
+					<auto-complete source="vm.loadTags($query)"></auto-complete> 
+		    </tags-input>
+		  </label>
 		</div>
+	</ion-nav-title>
+	
+	<ion-content class="padding tab-posts">
+
+		<!-- <div class="tags-wrapper">
+			<div class="blur-overlay"></div>
+		</div> -->
+
 		<!-- sortBy- bar -->
 		<div class="list" style="margin-top:20px;">
 		  <label class="item item-input item-select">

@@ -30,13 +30,38 @@ angular
 		activate();
 		//////////////////////////////////////////
 
-		//filterData- function by tags
+		function showLoading(){
+	    $ionicLoading.show({
+	      template: '<ion-spinner></ion-spinner>',
+	    });
+	  }
+
+	  function activate(){
+			Post.all.$loaded().then(function(success){
+				vm.allposts = success;
+				vm.filteredData = [];
+				angular.forEach(success, function(post){
+					vm.filteredData.push(post);
+				});
+				$ionicLoading.hide();
+			}, function(error){
+				window.alert(error);
+			});
+		}
+
+		// Filter data when tag is inputed
 		function filterData(tag){
-			// console.log(vm.filteredData);
 			for (var i = vm.filteredData.length - 1; i >= 0; i--) {
 				var filter = true;
 				for(var j = vm.filteredData[i].tags.length - 1; j >= 0; j--){
-					if(vm.filteredData[i].tags[j].toLowerCase() === tag.text.toLowerCase()){
+					// if(vm.filteredData[i].tags[j].toLowerCase() === tag.text.toLowerCase()){
+					// 	filter = false;
+					// }
+					
+					var searchTag = tag.text.toLowerCase();
+					var postTag = vm.filteredData[i].tags[j].toLowerCase();
+
+					if(postTag.indexOf(searchTag) > -1){
 						filter = false;
 					}
 				}
@@ -45,9 +70,9 @@ angular
 				}
 			}
 		}
-		//filterData- function when removing a tag
-		function filterDataLess(){
 
+		// Show correct posts when tag is removed
+		function filterDataLess(){
 			if (vm.tags.length){
 				vm.filteredData = [];
 				var tmpFilterTagsList = _.map(vm.tags, function(tag){ return tag.text.toLowerCase(); });
@@ -70,29 +95,6 @@ angular
 				});	
 			}
 		}
-		// function sort(predicate){
-		// 		// vm.reverse = (predicate === nuorin) ? !vm.reverse : false;
-		// 	vm.predicate = predicate;
-		// }
-		
-		function showLoading(){
-	    $ionicLoading.show({
-	      template: '<ion-spinner></ion-spinner>',
-	    });
-	  }
-
-	  function activate(){
-			Post.all.$loaded().then(function(success){
-				vm.allposts = success;
-				vm.filteredData = [];
-				angular.forEach(success, function(post){
-					vm.filteredData.push(post);
-				});
-				$ionicLoading.hide();
-			}, function(error){
-				window.alert(error);
-			});
-		}
 
 		function showDetails(postId){
 			console.log(postId);
@@ -100,7 +102,8 @@ angular
 		}
 
 		function loadTags(){
-			return [{text : 'moi'}, {text : 'moi1'}, {text : 'moi2'}, {text : 'moi3'}];
+			console.log('moi');
+			return [{text : 'moi9'}, {text : 'moi1'}, {text : 'moi2'}, {text : 'moi3'}, {text : 'moi4'}, {text : 'moi5'}, {text : 'momoniwefi6'}];
 		}
 
 	});
