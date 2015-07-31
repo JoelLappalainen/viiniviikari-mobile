@@ -64,8 +64,8 @@ $negative-color-dark: darken($negative-color, 20%);
     border-bottom-right-radius: $radius;
 }
 
-@mixin transition($prop) {
-    -webkit-transition: $prop 1s ease-in-out;
+@mixin transition($prop, $duration) {
+    -webkit-transition: $prop $duration ease-in-out;
     -moz-transition: $prop 1s ease-in-out;
     -o-transition: $prop 1s ease-in-out;
     transition: $prop 1s ease-in-out;

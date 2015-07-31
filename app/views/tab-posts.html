@@ -3,14 +3,14 @@
 		<div class="bar bar-header item-input-inset" style="overflow:visible;">
 			<label class="item-input-wrapper">
 		    <i class="icon ion-ios-search placeholder-icon"></i>
-		    <tags-input ng-model="vm.tags" placeholder="Lisää tagi" add-on-blur="false" add-from-autocomplete-only="true" on-tag-added="vm.filterData($tag)" on-tag-removed="vm.filterDataLess()">
-					<auto-complete source="vm.loadTags($query)"></auto-complete> 
+		    <tags-input ng-focus="vm.showAutocomplete()" ng-model="vm.tags" placeholder="Lisää tagi" max-tags="4" add-on-blur="false" replace-spaces-with-dashes="false" add-from-autocomplete-only="true" on-tag-added="vm.filterData($tag)" on-tag-removed="vm.filterDataLess()">
+					<auto-complete source="vm.loadTags($query)" load-on-focus="true" load-on-empty="true" debounce-delay="200" select-first-match="true" max-results-to-show="15" min-length="1"></auto-complete> 
 		    </tags-input>
 		  </label>
 		</div>
 	</ion-nav-title>
 	
-	<ion-content class="padding tab-posts">
+	<ion-content class="padding tab-posts" on-scroll="vm.hideAutocomplete()">
 
 		<!-- <div class="tags-wrapper">
 			<div class="blur-overlay"></div>
@@ -42,6 +42,7 @@
 					<div class="col">
 						<h2>{{post.title}}</h2>
 						<p>{{post.category}}</p>
+						<p style="font-size:8px;">{{post.tags}}</p>
 						<div style="display:inline;"><i ng-repeat="star in [] | range: post.rating" class="icon ion-star rating-star"></i></div>
 					</div>
 					<i class="icon ion-chevron-right icon-right"></i>
@@ -49,5 +50,7 @@
 				</div>
 			</div>
 		</div>
+
+		
 	</ion-content>
 </ion-view>

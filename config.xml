@@ -32,5 +32,22 @@
   <allow-navigation href="*"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
+
+  <preference name="fullscreen" value="false" />
+  <preference name="webviewbounce" value="false" />
+  <preference name="UIWebViewBounce" value="false" />
+  <preference name="DisallowOverscroll" value="true" />
+  <preference name="HideKeyboardFormAccessoryBar" value="false"/>
+  <preference name="KeyboardShrinksView" value="true" />
+  <preference name="Orientation" value="portrait" />
+  <preference name="hardwareAccelerated" value="true" />
+  <preference name="DisableScrollingWhenKeyboardShrinksView" value="true" />
+  <preference name="EnableViewportScale" value="false" />
+  <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+  
+  <feature name="Keyboard">
+    <param name="ios-package" value="IonicKeyboard" onload="true" />
+  </feature>
+  
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
 </widget>
